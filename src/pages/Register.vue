@@ -22,6 +22,19 @@
 
       </div> 
 
+
+      <div class="input">
+
+          <AuthInput 
+            placeholder = "昵称"
+            v-model="form.nickname"
+
+            :rule = "/^([a-zA-Z0-9_\u4e00-\u9fa5]{4,16})$/"
+            err_message = "昵称格式不正确"
+          ></AuthInput> 
+
+      </div> 
+
       <div class="input">
 
           <AuthInput 
@@ -34,13 +47,9 @@
 
       </div> 
 
-     <div class="register">
-         <p>没有账号？<router-link to="/register">去注册</router-link></p>
-     </div>   
 
       <div @click="handleSubmit">
-          <!--<AuthButton text="登录" @click="handleSubmit"></AuthButton>-->
-          <AuthButton text="登录" />
+          <AuthButton text="注册" />
       </div>
   </div>
 </template>
@@ -54,7 +63,8 @@ export default {
         return{
             form:{
                 username:'',
-                password:''
+                password:'',
+                nickname:''
             }
         }
     },
@@ -68,13 +78,15 @@ export default {
         },
         handleSubmit(){
             this.$axios({
-                url:'/login',
-                method:"post",
+                url:'/register',
+                method:"POST",
                 data:this.form
             }).then( res=>{
+                console.log(res.data)
                 const {message} = res.data
-                if(message == "登录成功"){
-                    this.$router.push('/')
+                console.log(res.data.message)
+                if(message == "注册成功"){
+                    this.$router.push('/login')
                 }
                 this.$toast(message)
                 

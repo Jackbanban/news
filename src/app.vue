@@ -1,7 +1,5 @@
 <template>
-  <div class="app">
-      <div class="red">第一个单文件组件</div>
-      <router-link to="/login">登录</router-link>
+  <div class="app" v-cloak>
       <router-view></router-view>
   </div>
 </template>
@@ -12,14 +10,28 @@ export default {
 }
 </script>
 
+
 <style>
-    .red{
-        color: red;
-        font-size: 50px;
+    @import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
+    @import url('../node_modules/vant/lib/index.css');
+    *{
+        margin: 0;
+        padding: 0;
     }
-    .green{
-        font-size: 60px;
-        color: pink
+    ul,li,ol{
+        list-style: none
+    }
+    i,em{
+        font-style: normal
+    }
+    a{
+        color: inherit
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    [v-cloak]{
+        display: none
     }
 </style>
 
