@@ -19,7 +19,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     span:last-child{
         opacity: 0;
