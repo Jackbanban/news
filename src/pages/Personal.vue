@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/edit"> 
         <div class="profile">
             <div>
                 <img :src="profile.head_img" alt="">
@@ -11,11 +12,17 @@
                 </div>
                 <p>2019-10-10</p>
             </div>
-            <span class="iconfont iconjiantou1" @click="handleToEdit"></span>
+            <span class="iconfont iconjiantou1"></span>
         </div>      
+        </router-link>
 
-        <CellBar laber="我的关注" text="关注的用户"></CellBar>
-        <CellBar laber="我的跟帖" text="跟帖/回复"></CellBar>
+        <router-link to="/userfollow"> 
+            <CellBar laber="我的关注" text="关注的用户"></CellBar>
+        </router-link>
+
+        <router-link to="/usercomment">
+            <CellBar laber="我的跟帖" text="跟帖/回复"></CellBar>
+        </router-link>
         <CellBar laber="我的收藏" text="文章/视频"></CellBar>
         <div @click="handleLogout">
             <CellBar laber="退出登录" ></CellBar>
@@ -39,9 +46,6 @@
             localStorage.removeItem("token")
             localStorage.removeItem('user_id')
             this.$router.replace('/login')
-        },
-        handleToEdit(){
-            this.$router.push('/edit')
         }
     },
     mounted(){

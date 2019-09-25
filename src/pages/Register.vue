@@ -41,7 +41,9 @@
             err_message="密码格式不正确"
           ></AuthInput> 
       </div>
-
+      <div class="register">
+         <p>有账号？<router-link to="/login">去登录</router-link></p>
+     </div> 
       
    
 

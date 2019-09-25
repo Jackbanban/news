@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 import Vant from 'vant'
 import { Toast } from 'vant';
+import { Uploader } from 'vant';
+import { Field } from 'vant';
 import axios from "axios"
 import app from "@/app.vue"
 import Login from '@/pages/Login.vue'
@@ -10,9 +12,13 @@ import Register from '@/pages/Register.vue'
 import Personal from '@/pages/Personal.vue'
 import Edit from '@/pages/Edit.vue'
 import Case from '@/pages/case.vue'
+import UserFollow from '@/pages/UserFollow.vue'
+import UserComment from '@/pages/UserComment.vue'
+
 
 Vue.use(VueRouter)                                                                                                                                                                                                                                                                                                                                   
 Vue.use(Vant)
+Vue.use(Field);
 
 Vue.prototype.$axios = axios
 // 基准路径，以后每次请求都会自动在前面加上该路径
@@ -22,7 +28,9 @@ const routes = [
     {path:'/register',component:Register},
     {path:'/personal',component:Personal},
     {path:'/edit',component:Edit},
-    {path:'/case',component:Case}
+    {path:'/case',component:Case},
+    {path:'/userfollow', component:UserFollow},
+    {path:'/usercomment',component:UserComment}
 ]
 const router = new VueRouter({
     routes

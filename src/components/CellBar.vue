@@ -1,7 +1,7 @@
 <template>
-    <div class="cellbar" @click="('click',$event)" >
+    <div class="cellbar" @click="$emit('click', $event)" >
         <p>{{laber}}</p>
-        <span>{{text}}</span>
+        <span>{{ type === 'password'? '******' : text}}</span>
         <i class="iconfont iconjiantou1"></i>
     </div>
 </template>
@@ -10,7 +10,8 @@
 export default {
     props:[
         "laber",
-        "text"
+        "text",
+        'type'
     ]
 }
 </script>
