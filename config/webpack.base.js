@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 导入清除插件
 const {CleanWebpackPlugin}= require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
+const CopyPlugin = require("copy-webpack-plugin");
 // webpack的配置
 module.exports = {
 
@@ -89,6 +89,9 @@ module.exports = {
 
         new CleanWebpackPlugin(), // 调用清除打包目录插件                  
         new VueLoaderPlugin(),
+        new CopyPlugin([
+            { from: 'static', to: 'static' }, // 把static复制到dist下的static
+        ]),
         new HtmlWebpackPlugin({
             template: "public/index.html"	// template指定默认html模板
         })

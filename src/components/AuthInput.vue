@@ -1,32 +1,30 @@
 <template>
-        <input 
-        class="input"
-        :class="{
-            success:status === 'success',
-            error:status === 'error'
-        }"
-        :placeholder="placeholder"
-        :value="value"
-        @input="handleInput"
-        @change="handleChange"
-        >
-
+  <input class="input"
+  :class="{'success':status === 'success',
+    'error':status === 'error'
+  }"
+  :placeholder="placeholder"
+  :value="value"
+  @input="handleInput"
+  @change="handleChange"
+  />
 </template>
 
 <script>
+
 export default {
     data(){
-        return{
+        return {
             status:''
         }
     },
     props:[
-        "placeholder",
-        "value",
-        "name",
+        'placeholder',
+        'value',
+        'name',
         'nickname',
-        "rule",
-        "err_message"
+        'rule',
+        'err_message'
     ],
     methods:{
         handleInput(){
@@ -34,20 +32,18 @@ export default {
             this.$emit('input',value)
             if(this.rule){
                 if(this.rule.test(value)){
-                    this.status = "success"
+                    this.status = 'success'
                 }else{
-                    this.status = "error"
+                    this.status = 'error'
                 }
             }
-            
         },
         handleChange(){
-            
-            if(this.err_message && this.status == "error"){
-                // alert(this.err_message)
+            if(this.err_message && this.status=='error'){
                 this.$toast.fail(this.err_message)
             }
         }
+    
     }
 }
 </script>

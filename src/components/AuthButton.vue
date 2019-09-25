@@ -6,17 +6,16 @@
 
 <script>
 export default {
-    props:["text"],
+    props:['text'],
     methods:{
-        handleClick(event){
-            this.$emit('click',event)
+        handleClick(){
+
         }
     }
 }
 </script>
 
 <style scoped lang="less">
-
     .btn{
         width: 100%;
         height: 48px;
