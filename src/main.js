@@ -5,6 +5,7 @@ import Vant from 'vant'
 import { Toast } from 'vant';
 import { Uploader } from 'vant';
 import { Field } from 'vant';
+import { Tab, Tabs } from 'vant';
 import axios from "axios"
 import app from "@/app.vue"
 import Login from '@/pages/Login.vue'
@@ -14,11 +15,15 @@ import Edit from '@/pages/Edit.vue'
 import Case from '@/pages/case.vue'
 import UserFollow from '@/pages/UserFollow.vue'
 import UserComment from '@/pages/UserComment.vue'
+import UserSatr from '@/pages/UserSatr.vue'
 
+
+import Index from '@/pages/Index.vue'
 
 Vue.use(VueRouter)                                                                                                                                                                                                                                                                                                                                   
 Vue.use(Vant)
 Vue.use(Field);
+Vue.use(Tab).use(Tabs);
 
 Vue.prototype.$axios = axios
 // 基准路径，以后每次请求都会自动在前面加上该路径
@@ -30,7 +35,12 @@ const routes = [
     {path:'/edit',component:Edit},
     {path:'/case',component:Case},
     {path:'/userfollow', component:UserFollow},
-    {path:'/usercomment',component:UserComment}
+    {path:'/usercomment',component:UserComment},
+    {path:'/usersatr',component:UserSatr},
+
+
+
+    {path:'/',component:Index}
 ]
 const router = new VueRouter({
     routes

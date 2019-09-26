@@ -23,7 +23,10 @@
         <router-link to="/usercomment">
             <CellBar laber="我的跟帖" text="跟帖/回复"></CellBar>
         </router-link>
-        <CellBar laber="我的收藏" text="文章/视频"></CellBar>
+
+        <router-link to="/usersatr">
+            <CellBar laber="我的收藏" text="文章/视频"></CellBar>
+        </router-link>
         <div @click="handleLogout">
             <CellBar laber="退出登录" ></CellBar>
         </div>
