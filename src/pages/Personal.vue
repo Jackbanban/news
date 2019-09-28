@@ -1,22 +1,22 @@
 <template>
     <div>
-        <router-link to="/edit"> 
-        <div class="profile">
-            <div>
-                <img :src="profile.head_img" alt="">
-            </div>
-            <div class="profile-center">
-                <div class="name">
-                    <span class="iconfont iconxingbienan"></span>
-                    {{profile.nickname}}
+        <router-link to="/edit">
+            <div class="profile">
+                <div>
+                    <img :src="profile.head_img" alt="">
                 </div>
-                <p>2019-10-10</p>
+                <div class="profile-center">
+                    <div class="name">
+                        <span :class="profile.gender === 1 ?  'iconfont iconxingbienan' :'iconfont iconxingbienv'"></span>
+                        {{profile.nickname}}
+                    </div>
+                    <p>2019-10-10</p>
+                </div>
+                <span class="iconfont iconjiantou1"></span>
             </div>
-            <span class="iconfont iconjiantou1"></span>
-        </div>      
         </router-link>
 
-        <router-link to="/userfollow"> 
+        <router-link to="/userfollow">
             <CellBar laber="我的关注" text="关注的用户"></CellBar>
         </router-link>
 
@@ -28,42 +28,42 @@
             <CellBar laber="我的收藏" text="文章/视频"></CellBar>
         </router-link>
         <div @click="handleLogout">
-            <CellBar laber="退出登录" ></CellBar>
+            <CellBar laber="退出登录"></CellBar>
         </div>
-    </div>   
+    </div>
 </template>
 
 <script>
-    import CellBar from '@/components/CellBar.vue'
-    export default {
-    data(){
-        return{
-            profile:{}
+import CellBar from '@/components/CellBar.vue'
+export default {
+    data() {
+        return {
+            profile: {}
         }
     },
-    components:{
+    components: {
         CellBar
     },
-    methods:{
-        handleLogout(){
+    methods: {
+        handleLogout() {
             localStorage.removeItem("token")
             localStorage.removeItem('user_id')
             this.$router.replace('/login')
         }
     },
-    mounted(){
-        
+    mounted() {
+
         this.$axios({
-            url:'/user/'+localStorage.getItem('user_id'),
+            url: '/user/' + localStorage.getItem('user_id'),
             headers: {
                 Authorization: localStorage.getItem("token")
             }
-        }).then(res=>{
-            const {data} = res.data
+        }).then(res => {
+            const { data } = res.data
             this.profile = data
-            if(data.head_img){
+            if (data.head_img) {
                 this.profile.head_img = this.$axios.defaults.baseURL + data.head_img
-            }else{
+            } else {
                 this.profile.head_img = './static/touxiang.jpg'
             }
         })
@@ -72,28 +72,31 @@
 </script>
 
 <style scoped lang="less">
-    .profile{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 5px solid #ddd;
-        img{
-            display:block;
-            border-radius: 50%;
-            width: 70 / 360 * 100vw;
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 5px solid #ddd;
+    img {
+        display: block;
+        border-radius: 50%;
+        width: 70 / 360 * 100vw;
+    }
+    .profile-center {
+        flex: 1;
+        padding: 0px 10px;
+        .iconxingbienan {
+            color: #a0c5e8
         }
-        .profile-center{
-            flex: 1;
-            padding: 0px 10px;
-            span{
-                color: #a0c5e8
-            }
-            p{  
-                padding:10px 0px;
-                color: #999;
-                font-size: 14px;
-            }
+        .iconxingbienv{
+            color: pink;
+        }
+        p {
+            padding: 10px 0px;
+            color: #999;
+            font-size: 14px;
         }
     }
+}
 </style>

@@ -17,8 +17,9 @@ import UserFollow from '@/pages/UserFollow.vue'
 import UserComment from '@/pages/UserComment.vue'
 import UserSatr from '@/pages/UserSatr.vue'
 
-
 import Index from '@/pages/Index.vue'
+import Category from '@/pages/Category.vue'
+import Details from '@/pages/Details.vue'
 
 Vue.use(VueRouter)                                                                                                                                                                                                                                                                                                                                   
 Vue.use(Vant)
@@ -40,7 +41,9 @@ const routes = [
 
 
 
-    {path:'/',component:Index}
+    {path:'/',component:Index},
+    {path:'/category',component:Category},
+    {path:'/details',component:Details}
 ]
 const router = new VueRouter({
     routes

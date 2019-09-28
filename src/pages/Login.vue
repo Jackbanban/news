@@ -4,8 +4,6 @@
       <div class="close">
           <span class="iconfont iconicon-test"></span>
       </div>
-
-
       <div class="logo">
           <span class="iconfont iconnew"></span>
       </div>
