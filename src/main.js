@@ -12,14 +12,15 @@ import Login from '@/pages/Login.vue'
 import Register from '@/pages/Register.vue'
 import Personal from '@/pages/Personal.vue'
 import Edit from '@/pages/Edit.vue'
-import Case from '@/pages/case.vue'
 import UserFollow from '@/pages/UserFollow.vue'
 import UserComment from '@/pages/UserComment.vue'
 import UserSatr from '@/pages/UserSatr.vue'
 
 import Index from '@/pages/Index.vue'
 import Category from '@/pages/Category.vue'
-import Details from '@/pages/Details.vue'
+// import Details from '@/pages/Details.vue'
+import PostDetails from "@/pages/PostDetails"
+
 
 Vue.use(VueRouter)                                                                                                                                                                                                                                                                                                                                   
 Vue.use(Vant)
@@ -34,7 +35,6 @@ const routes = [
     {path:'/register',component:Register},
     {path:'/personal',component:Personal},
     {path:'/edit',component:Edit},
-    {path:'/case',component:Case},
     {path:'/userfollow', component:UserFollow},
     {path:'/usercomment',component:UserComment},
     {path:'/usersatr',component:UserSatr},
@@ -43,7 +43,8 @@ const routes = [
 
     {path:'/',component:Index},
     {path:'/category',component:Category},
-    {path:'/details',component:Details}
+    // {path:'/details',component:Details},
+    {path:'/post_details/:id',component:PostDetails}
 ]
 const router = new VueRouter({
     routes

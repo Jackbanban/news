@@ -3,25 +3,33 @@
         <div class="card" v-if="post.cover.length > 0 && post.cover.length <3 && post.type===1">
             <div class="card-left">
                 <div class="post-title">
-                    {{post.title}}
+                    <router-link :to="`/post_details/${post.id}`">
+                        {{post.title}}
+                    </router-link>
                 </div>
                 <p class="post-info">
                     <span>{{post.user.nickname}}</span> 
                     <span>{{post.comment_length}}跟帖</span>
                 </p>
             </div>
-            <div class="card-img">
-                <img :src="post.cover[0].url" alt="">
-            </div>
+            <router-link :to="`/post_details/${post.id}`">
+                <div class="card-img">
+                    <img :src="post.cover[0].url" alt="">
+                </div>
+            </router-link>
         </div>
 
         <div class="img-cart" v-if=" post.cover.length >=3 && post.type===2">
             <div class="post-title">
+                <router-link :to="`/post_details/${post.id}`">
                     {{post.title}}
+                </router-link>
             </div> 
-            <div class="card-img">
-                <img  v-for="(item,index) in post.cover" :key="index" :src="item.url" v-if="index<3">
-            </div> 
+            <router-link :to="`/post_details/${post.id}`">
+                <div class="card-img">
+                    <img  v-for="(item,index) in post.cover" :key="index" :src="item.url" v-if="index<3">
+                </div> 
+            </router-link>
             <p class="post-info">
                <span>{{post.user.nickname}}</span> 
                <span>{{post.comment_length}}跟帖</span>
@@ -30,12 +38,16 @@
         
         <div class="video-cart" v-if="post.cover.length === 1 && post.type===2">
             <div class="post-title">
+                <router-link :to="`/post_details/${post.id}`">
                     {{post.title}}
+                </router-link>
             </div> 
-            <div class="video-img">
-                <p><i class="iconfont iconshipin"></i></p>
-                <img :src="post.cover[0].url" alt="">
-            </div>
+            <router-link :to="`/post_details/${post.id}`">
+                <div class="video-img">
+                    <p><i class="iconfont iconshipin"></i></p>
+                    <img :src="post.cover[0].url" alt="">
+                </div>
+            </router-link>
             <p class="post-info">
                <span>{{post.user.nickname}}</span> 
                <span>{{post.comment_length}}跟帖</span>

@@ -16,9 +16,11 @@
             <van-tabs v-model="active" sticky swipeable>
                 <van-tab v-for="(item,index) in categories" :title="item.name" :key="index">
                     <van-list v-model="item.loading" :finished="item.finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false">
-                        <router-link v-for="(item,index) in item.posts" :key="index" :to="{path:'/details/',query: { id:item.id }}"> 
+                        <!--<router-link v-for="(item,index) in item.posts" :key="index" :to="{path:'/details/',query: { id:item.id }}"> 
                             <PostCard  :post="item"></PostCard>
-                        </router-link>
+                        </router-link>-->
+
+                        <PostCard v-for="(item,index) in item.posts" :key="index"  :post="item"></PostCard>
                     </van-list>
                 </van-tab>
             </van-tabs>
@@ -88,13 +90,6 @@ export default {
                 this.categories[this.active].posts = data
                 
                 this.categories[this.active].pageIndex++
-
-                // this.categories[this.active].posts.forEach(v=> {
-                //     // console.log(v.id )
-                //     // this.categories[this.active].postid  = v.id
-                // });
-                // console.log(this.categories)
-                // console.log(this.categories[this.active].postid)
             })
         })
         

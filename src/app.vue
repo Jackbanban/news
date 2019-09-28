@@ -13,6 +13,7 @@ export default {
 
 <style>
     @import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
+    @import url('https://at.alicdn.com/t/font_1440039_emf0m2qq62i.css');
     @import url('../node_modules/vant/lib/index.css');
     *{
         margin: 0;
