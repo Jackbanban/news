@@ -10,9 +10,9 @@
 
         </div>
         <div class="footer-comment" v-show="isFocus">
-            <textarea rows="3" :autofocus="isFocus" @blur="isFocus=false"></textarea>
-            <!--<input type="text" @blur="uncomment">-->
-            <span class="focus">发送</span>
+            <textarea rows="3" :autofocus="isFocus" v-model="value" @blur="handleBlur" :placeholder="placeholder"></textarea>
+            
+            <span class="focus" @click="handleSubmit" >发送</span>
         </div>
     </div>
 </template>
@@ -21,18 +21,62 @@
 export default {
     data(){
         return{
-            isFocus:false
+            isFocus:false,
+            placeholder:'',
+            value:''
         }
     },
-    props:['post'],
+    props:['post','replyComment'],
     methods:{
         handleFocus(){
             this.isFocus = true
         },
-        // uncomment(){
-        //     this.isFocus = false
-        // }
-    }
+        handleSubmit(){
+            if(!this.value){
+                return
+            }
+            const data = {
+                content:this.value
+            }
+
+            if(this.replyComment){
+                data.parent_id = this.replyComment.id;
+            }
+
+            this.$axios({
+                url:'/post_comment/'+ this.post.id,
+                method:"POST",
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                },
+                data
+            }).then(res=>{
+                const {message} = res.data;
+                if(message ==="评论发布成功"){
+                    this.$emit("getComments", this.post.id,"isReply")
+                    this.isFocus = false
+                    this.value = ''
+                    window.scrollTo(0,0)
+                }
+            })
+        },
+        handleBlur(){
+            this.isFocus = true
+            if(this.replyComment){
+                this.$emit('replyComment',null)
+                this.placeholder = '写跟帖'
+            }
+        }
+    },
+    watch:{
+        replyComment(){
+            if(this.replyComment){
+                this.isFocus = true
+                this.placeholder = '@' + this.replyComment.user.nickname
+            }
+        }
+    },
+
 }
 </script>
 

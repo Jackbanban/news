@@ -45,6 +45,7 @@
 </template>
 
 <script>
+    // 导入自己创建的功能组件
     import AuthInput from '@/components/AuthInput.vue'
     import AuthButton from '@/components/AuthButton.vue'
 export default {
@@ -57,6 +58,7 @@ export default {
             }
         }
     },
+    // 注册组件
     components:{
         AuthInput,
         AuthButton
@@ -66,6 +68,7 @@ export default {
             this.form.username = value
         },
         handleSubmit(){
+            // 通过axios对服务器发起异步请求，请求数据（和ajax一样）
             this.$axios({
                 url:"/login",
                 method:"post",
@@ -73,6 +76,7 @@ export default {
             }).then(res=>{
                 const {message,data} = res.data
                 if(message == "登录成功"){
+                    // 登录成功从后台获取token验证信息和用户id存至本地，以便后续页面的验证
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("user_id", data.user.id);
                     this.$router.push('/')

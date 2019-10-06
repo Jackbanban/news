@@ -2,17 +2,20 @@
     <div>
         <div class="header">
             <span class="iconfont iconnew"></span>
-            <div class="header-search">
-                <p>
-                    <span class="iconfont iconsearch"></span>搜索新闻
-                </p>
-            </div>
+            <router-link to="/search" class="header-search">
+                <div>
+                    <p>
+                        <span class="iconfont iconsearch"></span>搜索新闻
+                    </p>
+                </div>
+            </router-link>
             <router-link to="/personal">
                 <span class="iconfont iconwode"></span>
             </router-link>
         </div>
         <div class="nav">
             <!--{path:'/details/',params: { id: item.posts.id }}-->
+            <!--vantUi组件的-->
             <van-tabs v-model="active" sticky swipeable>
                 <van-tab v-for="(item,index) in categories" :title="item.name" :key="index">
                     <van-list v-model="item.loading" :finished="item.finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false">
@@ -43,13 +46,16 @@ export default {
         PostCard
     },
     watch: {
+        // this.active监听改数值的变化，数值对应导航栏的信息变动，可通过监听改数值变化请求每页不同的数据
         active() {
            this.cid = this.categories[this.active].id;
+        //  调用vant组件的事件
            this.onLoad()
         }
     },
     methods: {
         onLoad() {
+            // 模拟网速加载数据
             setTimeout(() => {
                 const category = this.categories[this.active]
                 this.$axios({
@@ -59,6 +65,7 @@ export default {
                     if(data.length < this.pageSize){
                         category.finished = true;
                     }
+                    // 解构数组，对数据进行叠加避免数据覆盖
                     category.posts = [...category.posts, ...data]
                     category.pageIndex++
                     category.loading = false
@@ -74,6 +81,7 @@ export default {
         this.$axios(config).then(res => {
             const { data } = res.data
             const newData = []
+            // 将需要的信息挂载在categories上
             data.map((v) => {
                 v.posts = []
                 v.pageIndex = 1
@@ -88,7 +96,6 @@ export default {
             }).then(res => {
                 const { data } = res.data
                 this.categories[this.active].posts = data
-                
                 this.categories[this.active].pageIndex++
             })
         })

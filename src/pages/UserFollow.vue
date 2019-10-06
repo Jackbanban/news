@@ -1,6 +1,7 @@
 <template>
     <div class="follow">
          <HeadNormal title="我的关注"></HeadNormal>
+         <!--循环关注用户信息，注意要使用:key="index"，编辑器需要，防止报错-->
          <div class="content" v-for="(item,index) in followList" :key="index">
             <img :src="$axios.defaults.baseURL + item.head_img" alt="">
             <div class="center">
@@ -37,6 +38,7 @@ export default {
                 console.log(res)
                 const {message} = res.data
                 if(message === '取消关注成功'){
+                    // 数组中移除取消关注的用户
                     this.followList.splice(index,1)
                     this.$toast(message)
                 }
@@ -44,6 +46,7 @@ export default {
         }
     },
     mounted(){
+        // 组件加载完毕就请求用户信息
         this.$axios({
             url:"/user_follows" ,
             headers: {

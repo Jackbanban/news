@@ -11,6 +11,7 @@
       </div>
 
       <div>
+           <!--注意使用的是等号的值-->
           <AuthInput
             placeholder="用户名/手机号码"
             :value="form.username"

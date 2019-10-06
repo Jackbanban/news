@@ -1,4 +1,5 @@
 <template>
+<!--:class 动态创建class类名，通过对象的形式动态获取键值对中的值，如果值为true则创建对应键的类名-->
   <input class="input"
   :class="{'success':status === 'success',
     'error':status === 'error'
@@ -18,6 +19,7 @@ export default {
             status:''
         }
     },
+    // 父组件传递过来的数据
     props:[
         'placeholder',
         'value',
@@ -28,9 +30,11 @@ export default {
     ],
     methods:{
         handleInput(){
+            // 当前input事件的事件对象的事件目标的value值
             const {value} = event.target;
             this.$emit('input',value)
             if(this.rule){
+                // this.rule.test()判断正则表达式是否成立
                 if(this.rule.test(value)){
                     this.status = 'success'
                 }else{
@@ -40,6 +44,7 @@ export default {
         },
         handleChange(){
             if(this.err_message && this.status=='error'){
+                // vantUI组件的提示（注意使用该组件需要下载配置main.js文件同时需要在app.vue引入该组件的样式以便全局使用）
                 this.$toast.fail(this.err_message)
             }
         }
