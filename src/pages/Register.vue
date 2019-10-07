@@ -48,8 +48,8 @@
       
    
 
-    <div class="register" @click="handleSubmit">
-        <AuthButton text="注册">
+    <div class="register">
+        <AuthButton text="注册"  @click="handleSubmit">
 
         </AuthButton>
     </div>

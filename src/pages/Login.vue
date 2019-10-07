@@ -35,8 +35,8 @@
          <p>没有账号？<router-link to="/register">去注册</router-link></p>
      </div> 
 
-    <div class="register" @click="handleSubmit">
-        <AuthButton text="登录">
+    <div class="register">
+        <AuthButton text="登录" @click="handleSubmit">
 
         </AuthButton>
     </div>

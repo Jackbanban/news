@@ -85,9 +85,6 @@ export default {
                 this.pageIndex++
             })
         },
-        handleReply(item) {
-            this.replyComment = item
-        },
         onLoad(){
             setTimeout(()=>{
                 const {id} = this.$route.params
@@ -99,13 +96,6 @@ export default {
         const { id } = this.$route.params
 
         this.getComments(id)
-        // this.$axios({
-        //     url: `/post_comment/${id}`
-        // }).then(res => {
-        //     const { data } = res.data
-        //     this.comments = [...this.comments,...data]
-        // })
-
         const config = { url: '/post/' + id }
         const token = localStorage.getItem('token')
         if (token) {

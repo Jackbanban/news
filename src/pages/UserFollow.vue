@@ -35,7 +35,6 @@ export default {
                     Authorization: localStorage.getItem("token")
                 }
             }).then(res=>{
-                console.log(res)
                 const {message} = res.data
                 if(message === '取消关注成功'){
                     // 数组中移除取消关注的用户

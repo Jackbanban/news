@@ -8,8 +8,8 @@
 export default {
     props:['text'],
     methods:{
-        handleClick(){
-
+        handleClick(event){
+            this.$emit('click',event)
         }
     }
 }

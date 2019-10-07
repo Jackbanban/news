@@ -10,7 +10,7 @@
         <van-dialog v-model="show1" title="编辑昵称" show-cancel-button @confirm="handlNickname">
             <van-cell-group>
                 <van-field :value="profile.nickname" placeholder="请输入昵称" ref="nickname" />
-            </van-cell-group>
+            </van-cell-group>  
         </van-dialog>
         <CellBar laber="密码" :text="profile.password" type="password" @click="show2 = !show2"></CellBar>
         <van-dialog v-model="show2" title="编辑密码" show-cancel-button @confirm="handlPassword">

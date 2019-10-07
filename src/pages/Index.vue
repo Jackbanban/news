@@ -25,6 +25,15 @@
 
                         <PostCard v-for="(item,index) in item.posts" :key="index"  :post="item"></PostCard>
                     </van-list>
+                    <!--加载中的图标-->
+                    <van-loading 
+                        v-if="item.posts.length === 0 && !item.finished"
+                        type="spinner" 
+                        size="24px"
+                        style="margin-top:20px;"
+                        vertical
+                        color="#1989fa" >
+                    </van-loading>
                 </van-tab>
             </van-tabs>
         </div>
@@ -34,6 +43,7 @@
 <script>
 import PostCard from '@/components/PostCard .vue'
 export default {
+    name:'Index',
     data() {
         return {
             active: localStorage.getItem('token') ? 1 : 0,

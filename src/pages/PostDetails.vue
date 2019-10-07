@@ -96,20 +96,6 @@ export default {
                 this.$toast(message)
             })
         },
-        handleUnfollow() {
-            this.$axios({
-                url: "/user_unfollow/" + this.detail.user.id,
-                headers: {
-                    Authorization: localStorage.getItem("token")
-                }
-            }).then(res => {
-                const { message } = res.data
-                if (message === '取消关注成功') {
-                    this.detail.has_follow = false
-                }
-                this.$toast(message)
-            })
-        },
         handleLike() {
             this.$axios({
                 url: "/post_like/" + this.detail.id,
@@ -158,7 +144,6 @@ export default {
         this.$axios(config).then(res => {
             const { data } = res.data
             this.detail = data
-            console.log(data)
         })
     }
 }

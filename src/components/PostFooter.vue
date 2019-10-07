@@ -14,7 +14,7 @@
             
             <span class="focus" @click="handleSubmit" >发送</span>
         </div>
-    </div>
+    </div>  
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
             })
         },
         handleBlur(){
-            this.isFocus = true
+            this.isFocus = false
             if(this.replyComment){
                 this.$emit('replyComment',null)
                 this.placeholder = '写跟帖'
