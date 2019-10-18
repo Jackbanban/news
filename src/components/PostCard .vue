@@ -58,7 +58,12 @@
 
 <script>
 export default {
-    props:['post']
+    props:['post'],
+    mounted(){
+        if(this.post.cover[0].url.indexOf('http') === -1){
+           this.post.cover[0].url = this.$axios.defaults.baseURL + this.post.cover[0].url 
+        }
+    }
 }
 </script>
 

@@ -51,7 +51,6 @@ const routes = [
     {path:'/usersatr',component:UserSatr},
 
 
-
     {path:'/',component:Index},
     {path:'/category',component:Category},
     // {path:'/details',component:Details},
